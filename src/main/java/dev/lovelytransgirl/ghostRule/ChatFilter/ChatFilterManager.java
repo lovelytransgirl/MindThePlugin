@@ -29,9 +29,16 @@ public class ChatFilterManager {
     }
 
     public boolean isFiltered(Component message) {
-        String plainText = serializer.serialize(message);
+        if (message == null) return false;
+        String plainText = PlainTextComponentSerializer.plainText().serialize(message);
+
+        if (plainText.isEmpty()) {
+            plugin.getLogger().warning("Received empty plain text from component: " + message);
+        }
+
         return patterns.stream().anyMatch(pattern -> pattern.matcher(plainText).find());
     }
+
 
     public String getBypassPermission() {
         return bypassPermission;
