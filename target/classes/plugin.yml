@@ -1,0 +1,12 @@
+name: GhostRule
+version: '1.0-SNAPSHOT'
+main: dev.lovelytransgirl.ghostRule.GhostRule
+api-version: '1.21'
+prefix: Mind |
+authors: [ lovelytransgirl, MindGoesBye ]
+description: Our own SMP plugin.
+website: https://mindhas403.dev
+folia-supported: true
+commands:
+  filter:
+    usage: /filer <reload|count|test>
