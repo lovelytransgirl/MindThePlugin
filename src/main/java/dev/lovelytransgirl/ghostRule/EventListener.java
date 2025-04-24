@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.regex.Pattern;
@@ -22,6 +23,27 @@ public class EventListener implements Listener {
     public EventListener(JavaPlugin plugin, ChatFilterManager chatFilter) {
         this.plugin = plugin;
         this.chatFilter = chatFilter;
+    }
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        final CachedMetaData metaData = GhostRule.getInstance().luckPerms.getPlayerAdapter(Player.class).getMetaData(player);
+
+        if (player.hasPlayedBefore() != true) {
+            player.sendMessage("Welcome, Looks like this is your first time playing!");
+            player.sendMessage(colorize("Make sure to read the rules with &e&n/rules&r!"));
+            player.sendMessage("");
+        }
+        if (player.hasPlayedBefore() == true) {
+            player.sendMessage(colorize("Welcome back &e&n" + player.getName()));
+        }
+        player.sendMessage("");
+        player.sendMessage(colorize("Your rank is &b&n" + metaData.getPrimaryGroup().toUpperCase()));
+        player.sendMessage(colorize("You can view all the available command with &e&n/help&f!"));
+        player.sendMessage("");
+        player.sendMessage(colorize("If you have any question, Please either ask &aonline moderators &for ping us in the &bdiscord&f!"));
+        player.sendMessage("");
+        player.sendMessage(colorize("Enjoy playing! &b&n:BlobhajHeart150:"));;
     }
 
     @EventHandler
