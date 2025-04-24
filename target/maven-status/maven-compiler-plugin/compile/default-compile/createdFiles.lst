@@ -1,4 +1,7 @@
 dev\lovelytransgirl\ghostRule\Commands.class
+dev\lovelytransgirl\ghostRule\DiscordBot\Bot.class
 dev\lovelytransgirl\ghostRule\GhostRule.class
+dev\lovelytransgirl\ghostRule\Start.class
+dev\lovelytransgirl\ghostRule\FoliaRunnable.class
 dev\lovelytransgirl\ghostRule\ChatFilter\ChatFilterManager.class
 dev\lovelytransgirl\ghostRule\EventListener.class
