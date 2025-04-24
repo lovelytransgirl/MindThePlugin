@@ -1,17 +1,20 @@
 package dev.lovelytransgirl.ghostRule;
 
 import dev.lovelytransgirl.ghostRule.ChatFilter.ChatFilterManager;
+import net.luckperms.api.LuckPerms;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class GhostRule extends JavaPlugin {
     private ChatFilterManager chatFilter;
     public final String prefix = "<gradient:#a77df0:#602fb5><b>Mind Utilities <reset><dark_gray>» ";
+    public LuckPerms luckPerms;
     private static GhostRule instance;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
+        this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
         this.chatFilter = new ChatFilterManager(this);
         getServer().getPluginManager().registerEvents(new EventListener(this, chatFilter), this);
 
