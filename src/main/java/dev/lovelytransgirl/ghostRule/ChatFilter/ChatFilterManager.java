@@ -65,13 +65,14 @@ public class ChatFilterManager {
             try {
                 plugin.saveResource("filter.yml", false);
                 plugin.getLogger().info("Loading default filter!!");
-                config = YamlConfiguration.loadConfiguration(configFile);
-                config.save(configFile);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 plugin.getLogger().log(Level.SEVERE, "For whatever reason, Can't create CFC file.", e);
             }
         }
+        // fix for null
+        config = YamlConfiguration.loadConfiguration(configFile);
     }
+
 
     public int getPatternCount() {
         return patterns.size();
