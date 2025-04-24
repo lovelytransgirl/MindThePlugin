@@ -44,8 +44,11 @@ public class EventListener implements Listener {
 
         // Get a LuckPerms cached metadata for the player.
         final CachedMetaData metaData = GhostRule.getInstance().luckPerms.getPlayerAdapter(Player.class).getMetaData(player);
-
-        event.setFormat(colorize(metaData.getPrefix() + event.getPlayer().getName() + " &8» &r") + event.getMessage());
+        if (metaData.getPrefix() == null) {
+            event.setFormat(colorize(event.getPlayer().getName() + " &8» &r") + event.getMessage());
+        } else {
+            event.setFormat(colorize(metaData.getPrefix() + event.getPlayer().getName() + " &8» &r") + event.getMessage());
+        }
     }
 
     private String colorize(final String message) {
