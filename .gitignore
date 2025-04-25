@@ -5,3 +5,4 @@
 /mavenHomeManager.xml
 # do not include target
 /target/
+/target/*
