@@ -11,6 +11,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.luckperms.api.cacheddata.CachedMetaData;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -23,6 +24,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.EventListenerProxy;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -77,7 +79,7 @@ public class EventListener implements Listener {
         ;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerChatEvent(AsyncChatEvent event) {
         if (event.getPlayer().hasPermission(chatFilter.getBypassPermission())) {
             return;
@@ -92,10 +94,14 @@ public class EventListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onChat(final AsyncPlayerChatEvent event) {
         final String message = event.getMessage();
         final Player player = event.getPlayer();
+        if (chatFilter.isFilteredButOld(event.getMessage())) {
+            event.setCancelled(true);
+            return;
+        }
 
         // Get a LuckPerms cached metadata for the player.
         final CachedMetaData metaData = GhostRule.getInstance().luckPerms.getPlayerAdapter(Player.class).getMetaData(player);

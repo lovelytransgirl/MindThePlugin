@@ -38,6 +38,9 @@ public class ChatFilterManager {
 
         return patterns.stream().anyMatch(pattern -> pattern.matcher(plainText).find());
     }
+    public boolean isFilteredButOld(String message) {
+        return patterns.stream().anyMatch(pattern -> pattern.matcher(message).find());
+    }
 
 
     public String getBypassPermission() {
