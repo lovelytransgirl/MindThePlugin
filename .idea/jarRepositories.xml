@@ -17,6 +17,11 @@
       <option name="url" value="https://repo.papermc.io/repository/maven-public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="coreprotect" />
+      <option name="name" value="coreprotect" />
+      <option name="url" value="https://maven.playpro.com" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
@@ -25,6 +30,16 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="coreprotect" />
+      <option name="name" value="coreprotect" />
+      <option name="url" value="https://maven.playpro.com/net/coreprotect/coreprotect/22.4/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="playpro-repo" />
+      <option name="name" value="playpro-repo" />
+      <option name="url" value="https://maven.playpro.com" />
     </remote-repository>
   </component>
 </project>

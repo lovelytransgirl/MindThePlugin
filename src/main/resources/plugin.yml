@@ -7,6 +7,9 @@ authors: [ lovelytransgirl, MindGoesBye ]
 description: Our own SMP plugin.
 website: https://mindhas403.dev
 folia-supported: true
+depend:
+  - CoreProtect
+  - LuckPerms
 commands:
   filter:
     description: is this required?
