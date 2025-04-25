@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,8 +27,16 @@ public class Bot {
                     .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                     .setActivity(Activity.watching("MindTheSMP"))
                     .setStatus(OnlineStatus.IDLE)
+                    .addEventListeners(new CoreProtectLookUp())
                     .build();
 
+            jda.updateCommands().addCommands(
+                    Commands.slash("cpl", "Perform lookup task on CoreProtect using CoreProtect API.")
+                            .addOption(OptionType.INTEGER, "time", "Time span to look up (eg. 10)", true)
+                            .addOption(OptionType.STRING, "player", "Player you want to look up", true)
+                            .addOption(OptionType.STRING, "action", "Action that player does (eg. break)"),
+                    Commands.slash("testapi", "Test API between CoreProtect and JDA")
+            ).queue();
             jda.awaitReady();
             plugin.getLogger().info("Discord bot connected successfully!");
         } catch (Exception e) {

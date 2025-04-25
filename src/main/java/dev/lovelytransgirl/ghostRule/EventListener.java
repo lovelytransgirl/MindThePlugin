@@ -2,7 +2,9 @@ package dev.lovelytransgirl.ghostRule;
 
 import dev.lovelytransgirl.ghostRule.ChatFilter.ChatFilterManager;
 import dev.lovelytransgirl.ghostRule.DiscordBot.Bot;
+import io.papermc.paper.event.block.BlockBreakBlockEvent;
 import io.papermc.paper.event.player.AsyncChatEvent;
+import net.coreprotect.CoreProtectAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -12,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
@@ -19,6 +22,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class EventListener implements Listener {
@@ -104,5 +109,30 @@ public class EventListener implements Listener {
 
     private String colorize(final String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        List<String> playerList = new ArrayList<>();
+        playerList.add(event.getPlayer().getName());
+
+        CoreProtectAPI api = GhostRule.getInstance().getCoreProtect();
+        api.testAPI();
+        if (api != null) {
+            List<String[]> lookup = api.performLookup(10, playerList, null, null, null, null, 0, null);
+            if (lookup != null) {
+                for (String[] result : lookup){
+                    CoreProtectAPI.ParseResult parseResult = api.parseResult(result);
+                    event.getPlayer().sendMessage("" + parseResult.getX());
+                    event.getPlayer().sendMessage("" + parseResult.getY());
+                    event.getPlayer().sendMessage("" + parseResult.getZ());
+                    event.getPlayer().sendMessage("" + parseResult.getActionString());
+                    event.getPlayer().sendMessage("" + parseResult.getPlayer());
+                    event.getPlayer().sendMessage("" + parseResult.getTimestamp());
+                    event.getPlayer().sendMessage("" + parseResult.getType());
+                }
+            }
+        }
+
     }
 }
