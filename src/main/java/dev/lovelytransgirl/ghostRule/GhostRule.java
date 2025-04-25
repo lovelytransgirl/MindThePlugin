@@ -17,7 +17,7 @@ import java.util.logging.Level;
 
 public final class GhostRule extends JavaPlugin {
     private ChatFilterManager chatFilter;
-    public final String prefix = "<gradient:#a77df0:#602fb5><b>Mind Utilities <reset><dark_gray>» ";
+    public final String prefix = "<gradient:#a77df0:#602fb5><b>Mind <reset><dark_gray>» ";
     public LuckPerms luckPerms;
     private static GhostRule instance;
     public Bot bot;
@@ -55,6 +55,11 @@ public final class GhostRule extends JavaPlugin {
 
         getCommand("filter").setExecutor(new Commands(chatFilter));
         getCommand("filter").setTabCompleter(new Commands(chatFilter));
+        getCommand("hug").setExecutor(new Commands(chatFilter));
+        getCommand("hug").setTabCompleter(new Commands(chatFilter));
+        getCommand("kiss").setExecutor(new Commands(chatFilter));
+        getCommand("kiss").setTabCompleter(new Commands(chatFilter));
+        getCommand("help").setExecutor(new Commands(chatFilter));
         getLogger().info("Starting up...");
         AsyncScheduler asyncScheduler = getServer().getAsyncScheduler();
         Start task = new Start(asyncScheduler);

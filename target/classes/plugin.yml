@@ -13,3 +13,10 @@ depend:
 commands:
   filter:
     description: is this required?
+  help:
+    description: help yes
+  hug:
+    aliases: hugs
+    description: hugs u <3
+  kiss:
+    description: kisses u <3

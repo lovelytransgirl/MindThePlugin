@@ -28,13 +28,14 @@ public class Bot {
                     .setActivity(Activity.watching("MindTheSMP"))
                     .setStatus(OnlineStatus.IDLE)
                     .addEventListeners(new CoreProtectLookUp())
+                    .addEventListeners(new CommandAutoComplete())
                     .build();
 
             jda.updateCommands().addCommands(
                     Commands.slash("cpl", "Perform lookup task on CoreProtect using CoreProtect API.")
                             .addOption(OptionType.INTEGER, "time", "Time span to look up (eg. 10)", true)
                             .addOption(OptionType.STRING, "player", "Player you want to look up", true)
-                            .addOption(OptionType.STRING, "action", "Action that player does (eg. break)"),
+                            .addOption(OptionType.STRING, "action", "Action that player does (eg. break)", true),
                     Commands.slash("testapi", "Test API between CoreProtect and JDA")
             ).queue();
             jda.awaitReady();

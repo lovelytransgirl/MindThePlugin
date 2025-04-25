@@ -111,28 +111,27 @@ public class EventListener implements Listener {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 
-    @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
-        List<String> playerList = new ArrayList<>();
-        playerList.add(event.getPlayer().getName());
-
-        CoreProtectAPI api = GhostRule.getInstance().getCoreProtect();
-        api.testAPI();
-        if (api != null) {
-            List<String[]> lookup = api.performLookup(10, playerList, null, null, null, null, 0, null);
-            if (lookup != null) {
-                for (String[] result : lookup){
-                    CoreProtectAPI.ParseResult parseResult = api.parseResult(result);
-                    event.getPlayer().sendMessage("" + parseResult.getX());
-                    event.getPlayer().sendMessage("" + parseResult.getY());
-                    event.getPlayer().sendMessage("" + parseResult.getZ());
-                    event.getPlayer().sendMessage("" + parseResult.getActionString());
-                    event.getPlayer().sendMessage("" + parseResult.getPlayer());
-                    event.getPlayer().sendMessage("" + parseResult.getTimestamp());
-                    event.getPlayer().sendMessage("" + parseResult.getType());
-                }
-            }
-        }
-
-    }
+//    @EventHandler
+//    public void onBlockBreak(BlockBreakEvent event) {
+//        List<String> playerList = new ArrayList<>();
+//        playerList.add(event.getPlayer().getName());
+//
+//        CoreProtectAPI api = GhostRule.getInstance().getCoreProtect();
+//        api.testAPI();
+//        if (api != null) {
+//            List<String[]> lookup = api.performLookup(10, playerList, null, null, null, null, 0, null);
+//            if (lookup != null) {
+//                for (String[] result : lookup){
+//                    CoreProtectAPI.ParseResult parseResult = api.parseResult(result);
+//                    event.getPlayer().sendMessage("" + parseResult.getX());
+//                    event.getPlayer().sendMessage("" + parseResult.getY());
+//                    event.getPlayer().sendMessage("" + parseResult.getZ());
+//                    event.getPlayer().sendMessage("" + parseResult.getActionString());
+//                    event.getPlayer().sendMessage("" + parseResult.getPlayer());
+//                    event.getPlayer().sendMessage("" + parseResult.getTimestamp());
+//                    event.getPlayer().sendMessage("" + parseResult.getType());
+//                }
+//            }
+//        }
+//    }
 }
