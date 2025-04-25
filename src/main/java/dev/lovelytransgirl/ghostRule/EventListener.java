@@ -23,11 +23,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.EventListenerProxy;
-import java.util.List;
-import java.util.regex.Pattern;
-
 public class EventListener implements Listener {
     private final ChatFilterManager chatFilter;
     private final JavaPlugin plugin;
