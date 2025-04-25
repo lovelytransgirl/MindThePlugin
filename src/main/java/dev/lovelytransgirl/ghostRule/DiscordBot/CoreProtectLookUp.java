@@ -95,7 +95,7 @@ public class CoreProtectLookUp extends ListenerAdapter {
                     }
                 }).start();
             } else {
-                event.reply(":x: You do not have administrator permission.");
+                event.reply(":x: You do not have administrator permission.").queue();
             }
         }
     }
