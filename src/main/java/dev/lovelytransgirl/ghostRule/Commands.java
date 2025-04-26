@@ -85,6 +85,15 @@ public class Commands implements CommandExecutor, TabCompleter {
             sender.sendMessage("");
             sender.sendMessage("You can find more command in our discord server!");
         }
+        if (command.getName().equalsIgnoreCase("rules")) {
+            var mm = MiniMessage.miniMessage();
+            sender.sendMessage(mm.deserialize("<aqua>:Blobhaj150: <reset>Welcome to our Minecraft SMP!"));
+            sender.sendMessage(mm.deserialize("<aqua>:BigBlobhajHug150: <reset>These are some rules you need to followed when playing on our SMP!"));
+            sender.sendMessage("");
+            sender.sendMessage(mm.deserialize("<white>1. <aqua>No war crimes\n<white>2. <aqua>No stealing or griefing. (This is not anarchy minecraft server)\n<white>3. <aqua>Don't be a dick\n<white>4. <aqua>Use common sense\n<white>5. <aqua>Don't bypass our chat filter.\n<white>6. <aqua>Followed discord rules\n"));
+            sender.sendMessage("");
+            sender.sendMessage(mm.deserialize("That's all for now, hope you enjoy! have a great day! <aqua>:BlobhajHeart150:"));
+        }
         return false;
     }
 

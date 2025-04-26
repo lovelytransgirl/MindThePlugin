@@ -20,3 +20,5 @@ commands:
     description: hugs u <3
   kiss:
     description: kisses u <3
+  rules:
+    aliases: rule

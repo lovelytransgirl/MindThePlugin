@@ -60,6 +60,7 @@ public final class GhostRule extends JavaPlugin {
         getCommand("kiss").setExecutor(new Commands(chatFilter));
         getCommand("kiss").setTabCompleter(new Commands(chatFilter));
         getCommand("help").setExecutor(new Commands(chatFilter));
+        getCommand("rules").setExecutor(new Commands(chatFilter));
         getLogger().info("Starting up...");
         AsyncScheduler asyncScheduler = getServer().getAsyncScheduler();
         Start task = new Start(asyncScheduler);

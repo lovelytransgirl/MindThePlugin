@@ -46,8 +46,7 @@ public class EventListener implements Listener {
     @EventHandler
     public void onAdvancement(PlayerAdvancementDoneEvent event) {
         Player player = event.getPlayer();
-        String advancement = PlainTextComponentSerializer.plainText().serialize(event.getAdvancement().getDisplay().displayName());
-        GhostRule.getInstance().bot.sendEmbedMessage(null, "https://mc-heads.net/avatar/" + event.getPlayer().getName(), null, null, "RED", player.getName() + " has made advancement " + advancement, "1364870023104954409");
+        GhostRule.getInstance().bot.sendEmbedMessage(null, "https://mc-heads.net/avatar/" + event.getPlayer().getName(), null, null, "RED", player.getName() + " " + event.getEventName(), "1364870023104954409");
     }
 
     @EventHandler
@@ -59,7 +58,6 @@ public class EventListener implements Listener {
         if (player.hasPlayedBefore() != true) {
             player.sendMessage("Welcome, Looks like this is your first time playing!");
             player.sendMessage(colorize("Make sure to read the rules with &e&n/rules&r!"));
-            player.sendMessage("");
         }
         if (player.hasPlayedBefore() == true) {
             player.sendMessage(colorize("Welcome back &e&n" + player.getName()));
