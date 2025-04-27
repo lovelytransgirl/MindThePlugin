@@ -1,7 +1,6 @@
 package dev.lovelytransgirl.ghostRule;
 
 import dev.lovelytransgirl.ghostRule.ChatFilter.ChatFilterManager;
-import dev.lovelytransgirl.ghostRule.DiscordBot.Bot;
 import io.papermc.paper.threadedregions.scheduler.AsyncScheduler;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,9 +19,6 @@ public final class GhostRule extends JavaPlugin {
     public final String prefix = "<gradient:#a77df0:#602fb5><b>Mind <reset><dark_gray>» ";
     public LuckPerms luckPerms;
     private static GhostRule instance;
-    public Bot bot;
-    private File configFile;
-    private FileConfiguration config;
 
     @Override
     public void onEnable() {
@@ -33,22 +29,6 @@ public final class GhostRule extends JavaPlugin {
             this.getDataFolder().mkdir();
         }
 
-        configFile = new File(this.getDataFolder(), "config.yml");
-        if (!configFile.exists()) {
-            try {
-                this.saveResource("config.yml", false);
-                this.getLogger().info("Loading default config!!");
-            } catch (Exception e) {
-                this.getLogger().log(Level.SEVERE, "For whatever reason, Can't create config file.", e);
-            }
-        }
-        config = YamlConfiguration.loadConfiguration(configFile);
-        String token = config.getString("discord.token");
-        if (token == null || token.isEmpty()) {
-            getLogger().info("token not found");
-            return;
-        }
-        this.bot = new Bot(token, this);
         this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
         this.chatFilter = new ChatFilterManager(this);
         getServer().getPluginManager().registerEvents(new EventListener(this, chatFilter), this);
@@ -63,8 +43,6 @@ public final class GhostRule extends JavaPlugin {
         getCommand("rules").setExecutor(new Commands(chatFilter));
         getLogger().info("Starting up...");
         AsyncScheduler asyncScheduler = getServer().getAsyncScheduler();
-        Start task = new Start(asyncScheduler);
-        task.run(this);
         CoreProtectAPI api = getCoreProtect();
         if (api != null){ // Ensure we have access to the API
             api.testAPI(); // Will print out "[CoreProtect] API test successful." in the console.
@@ -98,13 +76,5 @@ public final class GhostRule extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         getLogger().info("BYE NERDSSS");
-        bot.sendEmbedMessage("Server Stopped", null, "The server has stopped!", null, "RED", null, "1364870023104954409");
-        if (bot != null) {
-            bot.shutdown();
-        }
-    }
-
-    public Bot getBot() {
-        return bot;
     }
 }
