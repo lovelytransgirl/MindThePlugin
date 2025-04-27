@@ -84,21 +84,5 @@
             <version>22.4</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>net.dv8tion</groupId>
-            <artifactId>JDA</artifactId>
-            <version>5.4.0</version> <!-- replace $version with the latest version -->
-            <!-- Optionally disable audio natives to reduce jar size by excluding `opus-java` and `tink` -->
-            <exclusions>
-                <exclusion>
-                    <groupId>club.minnced</groupId>
-                    <artifactId>opus-java</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.crypto.tink</groupId>
-                    <artifactId>tink</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
 </project>

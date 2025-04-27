@@ -46,7 +46,7 @@ public class EventListener implements Listener {
     @EventHandler
     public void onAdvancement(PlayerAdvancementDoneEvent event) {
         Player player = event.getPlayer();
-        GhostRule.getInstance().bot.sendEmbedMessage(null, "https://mc-heads.net/avatar/" + event.getPlayer().getName(), null, null, "RED", player.getName() + " " + event.getEventName(), "1364870023104954409");
+        GhostRule.getInstance().bot.sendEmbedMessage(null, "https://mc-heads.net/avatar/" + event.getPlayer().getName(), null, null, "RED", player.getName() + " has completed the advancement " + event.getAdvancement().getDisplay().displayName(), "1364870023104954409");
     }
 
     @EventHandler
